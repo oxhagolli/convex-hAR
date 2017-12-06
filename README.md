@@ -1,10 +1,7 @@
 # convex-hAR
 Orens Xhagolli and Aishwary Pramanik
 ### Project Description
-We are trying to combine a visualization of the Convex Hull Problem using Augmented Reality(AR). The setting is that the user will look at a given map from a top down view and random soldiers/policemen will spawn on the map: We will then visualize in real time at least one convex hull algorithm running to find the "secure perimeter". We believe this will be a good demostration to show that such problems can be extended and used in many different fields, including national/public security. The aim for this project to be a fun pedagogical tool, that will provide a real-world setting for the user, in order to communicate some common sense as to how the convex hull algorithms actually work.
-### A preliminary list of references to be used
-Graham's scan: http://www.math.ucsd.edu/~ronspubs/72_10_convex_hull.pdf
-Improved CH: http://ieeexplore.ieee.org/stamp/stamp.jsp?arnumber=5364467
+We are trying to combine a visualization of the Convex Hull Problem using Augmented Reality(AR). The setting is that the user will look at a given map from a top down view and random soldiers/policemen will spawn on the map: We will then visualize in real time at least one convex hull algorithm running to find the "secure perimeter". We believe this will be a good demostration to show that such problems can be extended and used in many different fields, including national/public security. The aim for this project to be a fun application visualization, that will provide a real-world setting for the user, in order to communicate some common sense as to how the convex hull algorithms actually work.
 ### Timeline
 The project will be divided into 2 major parts:
 - AR Research & Development (Aishwary)
@@ -22,3 +19,20 @@ However, the timeline for both will be similar even before we converge them into
 
 ### Workload balancing
 Since the project consists of 2 major components, breaking the work down becomes a lot easier. The basic assumption is that there will be a lot of cross-debugging and co-working sessions for both parts, but mainly Aishwary will be responsible for AR implementation & visualizations and Orens will be responsible for the Convex Hull algorithm performance and implementation.
+
+### Pseudocode
+
+```
+jarvis(S)
+   pointOnHull = leftmost point in S
+   i = 0
+   repeat
+      P[i] = pointOnHull
+      endpoint = S[0]
+      for j from 1 to |S|
+         if (endpoint == pointOnHull) or (S[j] is on left of line from P[i] to endpoint)
+            endpoint = S[j] 
+      i = i+1
+      pointOnHull = endpoint
+   until endpoint == P[0]
+```
