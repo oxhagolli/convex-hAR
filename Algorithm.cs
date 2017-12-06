@@ -34,25 +34,30 @@ public class Script : MonoBehaviour {
     GameObject[] convexHull(GameObject[] points)
     {
         List<GameObject> hull = new List<GameObject>();
-        foreach (GameObject p in points)
+
+        int minx = 0;
+        for (int i = 0; i < points.Length; i++)
         {
-            foreach (GameObject q in points)
+            if (points[i].GetComponent<Transform>().position.x < points[minx].GetComponent<Transform>().position.x)
+                minx = i;
+        }
+
+        int p = minx;
+        int q = 0;
+
+        while(true)
+        {
+            hull.Add(points[p]);
+            q = (p + 1) % points.Length;
+
+            for (int i = 0; i < points.Length; i++)
             {
-                if (p == q)
-                    continue;
-                bool valid = true;
-
-                foreach (GameObject r in points)
-                {
-                    if (r == p || r == q)
-                        continue;
-                    if (orientation(p, q, r) == 2)
-                        valid = false;
-                }
-
-                if (valid)
-                    hull.Add(p);
+                if (orientation(points[p], points[i], points[q]) == 2)
+                    q = i;
             }
+            p = q;
+            if (p == minx)
+                break;
         }
         return hull.ToArray();
     }
